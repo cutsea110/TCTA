@@ -5,11 +5,13 @@ open import Cat
 postulate c₁ c₂ ℓ : Level
 postulate A : Category c₁ c₂ ℓ
 
+open Cat.Category
+
 obj : Set c₁
-obj = Cat.Category.Obj A
-hom : Category.Obj A → Category.Obj A → Set c₂
-hom = Cat.Category.Hom A
-x : {A = A₁ : Category.Obj A} {B : Category.Obj A} → Category.Hom A A₁ B → Category.Obj A
-x = Cat.Category.dom A
-y : {A = A₁ : Category.Obj A} {B : Category.Obj A} → Category.Hom A A₁ B → Category.Obj A
-y = Cat.Category.cod A
+obj = Obj A
+hom : Obj A → Obj A → Set c₂
+hom = Hom A
+x : {A = A₁ : Obj A} {B : Obj A} → Hom A A₁ B → Obj A
+x = dom A
+y : {A = A₁ : Obj A} {B : Obj A} → Hom A A₁ B → Obj A
+y = cod A
