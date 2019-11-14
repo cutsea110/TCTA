@@ -14,3 +14,18 @@ record IsCategory {c₁ c₂ ℓ : Level} (Obj : Set c₁)
          identityR : {A B : Obj} → {f : Hom A B} → (f ∘ Id) ≈ f
          ∘-resp-≈ : {A B C : Obj} → {f g : Hom A B}{h i : Hom B C} → f ≈ g → h ≈ i → (h ∘ f) ≈ (i ∘ g)
          associative : {A B C D : Obj}{f : Hom C D}{g : Hom B C}{h : Hom A B} → (f ∘ (g ∘ h)) ≈ ((f ∘ g) ∘ h)
+
+record Category c₁ c₂ ℓ : Set (suc (c₁ ⊔ c₂ ⊔ ℓ)) where
+  infixr 9 _∘_
+  infix  4 _≈_
+  field
+    Obj : Set c₁
+    Hom : Obj → Obj → Set c₂
+    _∘_ : {A B C : Obj} → Hom B C → Hom A B → Hom A C
+    _≈_ : {A B : Obj} → Rel (Hom A B) ℓ
+    Id  : {A : Obj} → Hom A A
+    isCategory : IsCategory Obj Hom _≈_ _∘_ Id
+  dom : {A B : Obj} → Hom A B → Obj
+  dom {A} _ = A
+  cod : {A B : Obj} → Hom A B → Obj
+  cod {B = B} _ = B
