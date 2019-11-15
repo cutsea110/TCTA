@@ -15,3 +15,6 @@ x : {A = A₁ : Obj A} {B : Obj A} → Hom A A₁ B → Obj A
 x = dom A
 y : {A = A₁ : Obj A} {B : Obj A} → Hom A A₁ B → Obj A
 y = cod A
+
+postulate a b : Obj A
+postulate f g : Hom A a b

@@ -29,3 +29,6 @@ record Category c₁ c₂ ℓ : Set (suc (c₁ ⊔ c₂ ⊔ ℓ)) where
   dom {A} _ = A
   cod : {A B : Obj} → Hom A B → Obj
   cod {B = B} _ = B
+
+_→ᵒᵖ_ : Set → Set → Set
+a →ᵒᵖ b = b → a
