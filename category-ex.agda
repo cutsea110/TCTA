@@ -16,5 +16,10 @@ x = dom A
 y : {A = A₁ : Obj A} {B : Obj A} → Hom A A₁ B → Obj A
 y = cod A
 
-postulate a b : Obj A
-postulate f g : Hom A a b
+postulate a b c : Obj A
+postulate g : Hom A a b
+postulate f : Hom A b c
+
+h = _∘_ A f g
+
+
