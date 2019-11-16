@@ -29,3 +29,6 @@ C [ f ≈ g ] = Category._≈_ C f g
 _[_∘_] : ∀ {c₁ c₂ ℓ} → (C : Category c₁ c₂ ℓ) → {a b c : Obj C} → Hom C b c → Hom C a b → Hom C a c
 C [ f ∘ g ] = Category._∘_ C f g
 
+i : Hom A a c
+i = A [ f ∘ g ]
+
