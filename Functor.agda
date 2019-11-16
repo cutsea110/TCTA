@@ -17,7 +17,7 @@ record IsFunctor {c₁ c₂ ℓ c₁′ c₂′ ℓ′ : Level} (C : Category c�
                  : Set (suc (c₁ ⊔ c₂ ⊔ ℓ ⊔ c₁′ ⊔ c₂′ ⊔ ℓ′)) where
        field
          ≈-cong : {A B : Obj C} {f g : Hom C A B} → C [ f ≈ g ] → D [ FMap f ≈ FMap g ]
-         identity : {A : Obj C} →  D [ (FMap {A} {A} (Id C)) ≈ Id D ]
+         identity : {A : Obj C} →  D [ (FMap {A} {A} (Id C {A})) ≈ Id D {FObj A} ]
          distr : {a b c : Obj C} {f : Hom C a b} {g : Hom C b c} → D [ FMap (C [ g ∘ f ]) ≈ (D [ FMap g ∘ FMap f ]) ]
 
 record Functor {c₁ c₂ ℓ c₁′ c₂′ ℓ′ : Level} (domain : Category c₁ c₂ ℓ) (codomain : Category c₁′ c₂′ ℓ′)
