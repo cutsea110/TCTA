@@ -12,8 +12,8 @@ record IsCategory {c₁ c₂ ℓ : Level} (Obj : Set c₁)
          isEquivalence : {A B : Obj} → IsEquivalence {c₂} {ℓ} {Hom A B} _≈_
          identityL : {A B : Obj} → {f : Hom A B} → (Id ∘ f) ≈ f
          identityR : {A B : Obj} → {f : Hom A B} → (f ∘ Id) ≈ f
-         ∘-resp-≈ : {A B C : Obj} → {f g : Hom A B}{h i : Hom B C} → f ≈ g → h ≈ i → (h ∘ f) ≈ (i ∘ g)
-         associative : {A B C D : Obj}{f : Hom C D}{g : Hom B C}{h : Hom A B} → (f ∘ (g ∘ h)) ≈ ((f ∘ g) ∘ h)
+         ∘-resp-≈ : {A B C : Obj} {f g : Hom A B} {h i : Hom B C} → f ≈ g → h ≈ i → (h ∘ f) ≈ (i ∘ g)
+         associative : {A B C D : Obj} {f : Hom C D} {g : Hom B C} {h : Hom A B} → (f ∘ (g ∘ h)) ≈ ((f ∘ g) ∘ h)
 
 record Category c₁ c₂ ℓ : Set (suc (c₁ ⊔ c₂ ⊔ ℓ)) where
   infixr 9 _∘_
