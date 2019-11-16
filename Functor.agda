@@ -26,3 +26,10 @@ record Functor {c₁ c₂ ℓ c₁′ c₂′ ℓ′ : Level} (domain : Category
     FObj : Obj domain → Obj codomain
     FMap : {A B : Obj domain} → Hom domain A B → Hom codomain (FObj A) (FObj B)
     isFunctor : IsFunctor domain codomain FObj FMap
+
+open Functor
+-- distributive law
+-- T(g f) ≡ T(g) T(f)
+Lemma1 : {c₁ c₂ ℓ : Level} {A : Category c₁ c₂ ℓ} (T : Functor A A) → {a b c : Obj A} {g : Hom A b c} {f : Hom A a b}
+         → A [ (FMap T (A [ g ∘ f ])) ≈ (A [ FMap T g ∘ FMap T f ]) ]
+Lemma1 t = IsFunctor.distr (isFunctor t)
