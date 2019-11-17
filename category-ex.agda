@@ -4,6 +4,7 @@ open import Level
 open import Relation.Binary.Core
 
 open import Cat
+
 postulate c₁ c₂ ℓ : Level
 postulate A : Category c₁ c₂ ℓ
 
@@ -82,13 +83,23 @@ ListCategory A = record
 
 open import Algebra.Structures
 open import Algebra.FunctionProperties using (Op₁; Op₂)
-data MonoidObj {c : Level} : Set c where
-  ¡ : MonoidObj
+data MonoidObj (c : Level) : Set c where
+  ¡ : MonoidObj c
 
-record ≡-Monoid {c : Level} : Set (suc c) where
+record ≡-Monoid c : Set (suc c) where
   infixl 7 _⋆_
   field
     Carrier : Set c
     _⋆_     : Op₂ Carrier
     ε       : Carrier
     isMonoid : IsMonoid _≡_ _⋆_ ε
+open ≡-Monoid
+open import Data.Product
+isMonoidCategory : {c : Level} (M : ≡-Monoid c) → IsCategory (MonoidObj c) (λ a b → Carrier M) _≡_ (_⋆_ M) (ε M)
+isMonoidCategory M = record
+                       { isEquivalence = {!!}
+                       ; identityL = {!!}
+                       ; identityR = {!!}
+                       ; ∘-resp-≈ = {!!}
+                       ; associative = {!!}
+                       }
