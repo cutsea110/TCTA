@@ -48,22 +48,34 @@ data ListObj : Set where
 open import Relation.Binary.PropositionalEquality
 ≡-cong = Relation.Binary.PropositionalEquality.cong
 
-isListCategory : (A : Set) → IsCategory ListObj (\a b → List A) _≡_ _++_ []
+isListCategory : (A : Set) → IsCategory ListObj (λ a b → List A) _≡_ _++_ []
 isListCategory A = record
                      { isEquivalence = isEquivalence1 {A}
                      ; identityL = list-id-l
                      ; identityR = list-id-r
                      ; ∘-resp-≈ =  ∘-resp-≈ {A}
-                     ; associative = \{a} {b} {c} {d} {x} {y} {z} → list-assoc {A} {x} {y} {z}
+                     ; associative = λ {a} {b} {c} {d} {x} {y} {z} → list-assoc {A} {x} {y} {z}
                      }
   where
     isEquivalence1 : {A : Set} → IsEquivalence {_} {_} {List A} _≡_
-    isEquivalence1 = {!!}
+    isEquivalence1 {A} = record { refl = refl ; sym = sym ; trans = trans }
     list-id-l : {A : Set} {ys : List A} → [] ++ ys ≡ ys
-    list-id-l = {!!}
+    list-id-l {_} {_} = refl
     list-id-r : {A : Set} {xs : List A} → xs ++ [] ≡ xs
-    list-id-r = {!!}
+    list-id-r {_} {[]} = refl
+    list-id-r {_} {x ∷ xs} = ≡-cong (λ y → x ∷ y) list-id-r
     ∘-resp-≈ : {A : Set} {f g : List A} {h i : List A} → f ≡ g → h ≡ i → h ++ f ≡ i ++ g
-    ∘-resp-≈ = {!!}
+    ∘-resp-≈ {A} refl refl = refl
     list-assoc : {A : Set} {x y z : List A} → x ++ (y ++ z) ≡ (x ++ y) ++ z
-    list-assoc = {!!}
+    list-assoc {A} {[]} {ys} {zs} = refl
+    list-assoc {A} {x ∷ xs} {ys} {zs} = ≡-cong (λ y →  x ∷ y) (list-assoc {A} {xs} {ys} {zs})
+
+ListCategory : (A : Set) → Category _ _ _
+ListCategory A = record
+                   { Obj = ListObj
+                   ; Hom = λ a b → List A
+                   ; _∘_ = _++_
+                   ; _≈_ = _≡_
+                   ; Id = []
+                   ; isCategory = isListCategory A
+                   }
