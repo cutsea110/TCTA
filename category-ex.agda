@@ -79,3 +79,16 @@ ListCategory A = record
                    ; Id = []
                    ; isCategory = isListCategory A
                    }
+
+open import Algebra.Structures
+open import Algebra.FunctionProperties using (Op₁; Op₂)
+data MonoidObj {c : Level} : Set c where
+  ¡ : MonoidObj
+
+record ≡-Monoid {c : Level} : Set (suc c) where
+  infixl 7 _⋆_
+  field
+    Carrier : Set c
+    _⋆_     : Op₂ Carrier
+    ε       : Carrier
+    isMonoid : IsMonoid _≡_ _⋆_ ε
