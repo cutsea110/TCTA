@@ -51,13 +51,19 @@ open import Relation.Binary.PropositionalEquality
 isListCategory : (A : Set) → IsCategory ListObj (\a b → List A) _≡_ _++_ []
 isListCategory A = record
                      { isEquivalence = isEquivalence1 {A}
-                     ; identityL = {!list-id-l!}
-                     ; identityR = {!!}
-                     ; ∘-resp-≈ = {!!}
-                     ; associative = {!!}
+                     ; identityL = list-id-l
+                     ; identityR = list-id-r
+                     ; ∘-resp-≈ =  ∘-resp-≈ {A}
+                     ; associative = \{a} {b} {c} {d} {x} {y} {z} → list-assoc {A} {x} {y} {z}
                      }
   where
     isEquivalence1 : {A : Set} → IsEquivalence {_} {_} {List A} _≡_
     isEquivalence1 = {!!}
-    list-id-l : {A : Set} {x : List A} → [] ++ x ≡ x
+    list-id-l : {A : Set} {ys : List A} → [] ++ ys ≡ ys
     list-id-l = {!!}
+    list-id-r : {A : Set} {xs : List A} → xs ++ [] ≡ xs
+    list-id-r = {!!}
+    ∘-resp-≈ : {A : Set} {f g : List A} {h i : List A} → f ≡ g → h ≡ i → h ++ f ≡ i ++ g
+    ∘-resp-≈ = {!!}
+    list-assoc : {A : Set} {x y z : List A} → x ++ (y ++ z) ≡ (x ++ y) ++ z
+    list-assoc = {!!}
