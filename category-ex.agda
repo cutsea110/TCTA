@@ -97,9 +97,15 @@ open ≡-Monoid
 open import Data.Product
 isMonoidCategory : {c : Level} (M : ≡-Monoid c) → IsCategory (MonoidObj c) (λ a b → Carrier M) _≡_ (_⋆_ M) (ε M)
 isMonoidCategory M = record
-                       { isEquivalence = {!!}
-                       ; identityL = {!!}
-                       ; identityR = {!!}
-                       ; ∘-resp-≈ = {!!}
-                       ; associative = {!!}
+                       { isEquivalence = isEquivalence1 {_} {M}
+                       ; identityL = λ {_} {_} {x} → (proj₁ (IsMonoid.identity (isMonoid M))) x
+                       ; identityR = λ {_} {_} {x} → (proj₂ (IsMonoid.identity (isMonoid M))) x
+                       ; ∘-resp-≈ = ∘-resp-≈ {_} {M}
+                       ; associative = λ {a} {b} {c} {d} {x} {y} {z} → sym (IsMonoid.assoc (isMonoid M) x y z)
                        }
+                 where
+                   isEquivalence1 : ∀ {c}{M : ≡-Monoid c} → IsEquivalence {_} {_} {Carrier M} _≡_
+                   isEquivalence1 = {!!}
+                   ∘-resp-≈ : ∀ {c}{M : ≡-Monoid c} {f g : Carrier M} {h i : Carrier M} →
+                              f ≡ g → h ≡ i → (M ⋆ h) f ≡ (M ⋆ i) g
+                   ∘-resp-≈ = {!!}
