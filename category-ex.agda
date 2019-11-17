@@ -105,7 +105,7 @@ isMonoidCategory M = record
                        }
                  where
                    isEquivalence1 : ∀ {c}{M : ≡-Monoid c} → IsEquivalence {_} {_} {Carrier M} _≡_
-                   isEquivalence1 = {!!}
+                   isEquivalence1 {A} = record { refl = refl ; sym = sym ; trans = trans }
                    ∘-resp-≈ : ∀ {c}{M : ≡-Monoid c} {f g : Carrier M} {h i : Carrier M} →
                               f ≡ g → h ≡ i → (M ⋆ h) f ≡ (M ⋆ i) g
-                   ∘-resp-≈ = {!!}
+                   ∘-resp-≈ {A} refl refl = refl
