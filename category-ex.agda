@@ -3,12 +3,12 @@ module category-ex where
 open import Level
 open import Relation.Binary.Core
 
-open import Cat
+open import Category
 
 postulate c₁ c₂ ℓ : Level
 postulate A : Category c₁ c₂ ℓ
 
-open Cat.Category
+open Category.Category
 
 obj : Set c₁
 obj = Obj A
@@ -119,3 +119,4 @@ MonoidCategory {c} M = record
                        ; Id = ε M
                        ; isCategory = isMonoidCategory M
                        }
+

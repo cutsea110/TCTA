@@ -1,4 +1,4 @@
-module Cat where
+module Category where
 
 open import Level
 open import Relation.Binary.Core

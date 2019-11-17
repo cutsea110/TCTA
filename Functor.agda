@@ -2,9 +2,9 @@ module Functor where
 
 open import Level
 open import Relation.Binary.Core
-open import Cat
+open import Category
 
-open Cat.Category
+open Category.Category
 
 _[_≈_] : ∀ {c₁ c₂ ℓ} → (C : Category c₁ c₂ ℓ) → {A B : Obj C} → Rel (Hom C A B) ℓ
 C [ f ≈ g ] = Category._≈_ C f g
