@@ -109,3 +109,13 @@ isMonoidCategory M = record
                    ∘-resp-≈ : ∀ {c}{M : ≡-Monoid c} {f g : Carrier M} {h i : Carrier M} →
                               f ≡ g → h ≡ i → (M ⋆ h) f ≡ (M ⋆ i) g
                    ∘-resp-≈ {A} refl refl = refl
+
+MonoidCategory : ∀{c} (M : ≡-Monoid c) → Category _ _ _
+MonoidCategory {c} M = record
+                       { Obj = MonoidObj c
+                       ; Hom = λ a b → Carrier M 
+                       ; _∘_ = _⋆_ M
+                       ; _≈_ = _≡_
+                       ; Id = ε M
+                       ; isCategory = isMonoidCategory M
+                       }
