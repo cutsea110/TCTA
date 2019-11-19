@@ -6,11 +6,6 @@ open import Category
 
 open Category.Category
 
-_[_≈_] : ∀ {c₁ c₂ ℓ} → (C : Category c₁ c₂ ℓ) → {A B : Obj C} → Rel (Hom C A B) ℓ
-C [ f ≈ g ] = Category._≈_ C f g
-_[_∘_] : ∀ {c₁ c₂ ℓ} → (C : Category c₁ c₂ ℓ) → {a b c : Obj C} → Hom C b c → Hom C a b → Hom C a c
-C [ f ∘ g ] = Category._∘_ C f g
-
 record IsFunctor {c₁ c₂ ℓ c₁′ c₂′ ℓ′ : Level} (C : Category c₁ c₂ ℓ) (D : Category c₁′ c₂′ ℓ′)
                  (FObj : Obj C → Obj D)
                  (FMap : {A B : Obj C} → Hom C A B → Hom D (FObj A) (FObj B))

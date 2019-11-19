@@ -30,5 +30,9 @@ record Category c₁ c₂ ℓ : Set (suc (c₁ ⊔ c₂ ⊔ ℓ)) where
   cod : {A B : Obj} → Hom A B → Obj
   cod {B = B} _ = B
 
-_→ᵒᵖ_ : Set → Set → Set
-a →ᵒᵖ b = b → a
+open Category
+
+_[_≈_] : ∀ {c₁ c₂ ℓ} → (C : Category c₁ c₂ ℓ) → {A B : Obj C} → Rel (Hom C A B) ℓ
+C [ f ≈ g ] = Category._≈_ C f g
+_[_∘_] : ∀ {c₁ c₂ ℓ} → (C : Category c₁ c₂ ℓ) → {a b c : Obj C} → Hom C b c → Hom C a b → Hom C a c
+C [ f ∘ g ] = Category._∘_ C f g

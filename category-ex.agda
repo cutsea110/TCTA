@@ -25,11 +25,6 @@ postulate f : Hom A b c
 
 h = _∘_ A f g
 
-_[_≈_] : ∀ {c₁ c₂ ℓ} → (C : Category c₁ c₂ ℓ) → {A B : Obj C} → Rel (Hom C A B) ℓ
-C [ f ≈ g ] = Category._≈_ C f g
-_[_∘_] : ∀ {c₁ c₂ ℓ} → (C : Category c₁ c₂ ℓ) → {a b c : Obj C} → Hom C b c → Hom C a b → Hom C a c
-C [ f ∘ g ] = Category._∘_ C f g
-
 i : Hom A a c
 i = A [ f ∘ g ]
 
