@@ -1,7 +1,7 @@
 module Category where
 
 open import Level
-open import Relation.Binary.Core
+open import Relation.Binary
 
 record IsCategory {c₁ c₂ ℓ : Level} (Obj : Set c₁)
                   (Hom : Obj → Obj → Set c₂)

@@ -1,7 +1,7 @@
 module category-ex where
 
 open import Level
-open import Relation.Binary.Core
+open import Relation.Binary
 
 open import Category
 
