@@ -20,8 +20,8 @@ identityFunctor = record { FObj = λ x → x
                 where
                   isFunctor : ∀{ c₁ c₂ ℓ} {C : Category c₁ c₂ ℓ} → IsFunctor C C (λ x → x) (λ x → x)
                   isFunctor {C = C} = record { ≈-cong = λ x → x
-                                             ; identity = IsEquivalence.refl {!!}
-                                             ; distr = {!!}
+                                             ; identity = IsEquivalence.refl (IsCategory.isEquivalence (Category.isCategory C))
+                                             ; distr = IsEquivalence.refl (IsCategory.isEquivalence (Category.isCategory C))
                                              }
 
 postulate T : Functor A A
